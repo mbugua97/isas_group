@@ -4,4 +4,6 @@ from . import views
 
 urlpatterns=[
     path('',views.loginpage,name='lpage'),
+    path('homepage/',views.homepage,name='hpage'),
 ]
+
