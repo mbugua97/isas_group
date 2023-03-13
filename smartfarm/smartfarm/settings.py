@@ -77,6 +77,19 @@ WSGI_APPLICATION = 'smartfarm.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+#for the db ihave added a railway app instance of a db i.e postgresql
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'mCvkFKKZaDscVvTi3f7a',
+        'HOST': 'containers-us-west-100.railway.app',
+        'PORT': '6852',
+    }
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
