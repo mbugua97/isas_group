@@ -22,7 +22,7 @@
 
 <header class="header">
     <nav class="navbar">
-        <a href="{% url 'loginpage' %}">home</a>
+        <a href="#">home</a>
         <a href="{% url 'loginpage' %}">logout</a>
     </nav>
 
@@ -42,17 +42,15 @@
         <br>
         <br>
         live
-        <video width="640" height="360" controls>
-            <source src="{% static 'videos/isaas.mp4'%}" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-          <br>
-        <br>
-          last 24 hrs
-          <video width="600" height="300" controls>
-            <source src="{% static 'videos/isaas.mp4'%}" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+        <div class="videos-container" style=" display: inline-block;" >
+            <video width="750" height="270" controls>
+              <source src="video1.mp4" type="video/mp4">
+            </video>
+          
+            <video width="750" height="270" controls>
+              <source src="video2.mp4" type="video/mp4">
+            </video>
+          </div>
     </div>
 
 </section>

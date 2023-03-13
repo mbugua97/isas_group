@@ -7,10 +7,6 @@
     --border:.1rem solid rgba(255,255,255,.3);
 }
 
-#video-player {
-    width: 640px;
-    height: 480px;
-  }
 
 *{
     font-family: 'Roboto', sans-serif;
@@ -653,3 +649,10 @@ section{
     }
 
 }
+.videos-container {
+    display: inline-block;
+  }
+  
+  video {
+    display: inline-block;
+  }
