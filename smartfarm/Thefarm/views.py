@@ -27,3 +27,8 @@ def newuser(request):
     return render(request,'Thefarm/newuser.html')
 
 
+
+def lotp(request):
+    return render(request,'Thefarm/lotp.html')
+
+

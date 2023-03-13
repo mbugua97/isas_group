@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="center">
-        <h1> loginpage</h1>
+        <h1> login</h1>
         <form>
           <div class="inputbox">
             <input type="text" required="required">
@@ -22,8 +22,29 @@
             <span>Password</span>
           </div>
           <div class="inputbox">
-            <input type="button" value="submit">
+            <a href="{% url 'hpage' %}">
+            <input type="button" value="login">
+            </a>
           </div>
+          <div class="inputbox">
+            <a href="{% url 'lotp' %}">
+            <input type="button" value="otp login">
+        </a>
+            
+          </div>
+
+          <div class="inputbox">
+            <a href="{% url 'fogotp' %}">
+            <input type="button" value="fogot">
+        </a>
+          </div>
+          <div class="inputbox">
+            <a href="{% url 'newuser' %}">
+            <input type="button" value="newuser">
+        </a>
+            
+          </div>
+         
         </form>
       </div>
 

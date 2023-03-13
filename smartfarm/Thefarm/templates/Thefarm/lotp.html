@@ -4,31 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>newuser</title>
+    <title>Document</title>
     {% load static %}
     <!-- custom css file link  -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}"/>
 </head>
 <body>
-   
-
-
     <div class="center">
-        <h1> newuser</h1>
+        <h1> login via otp</h1>
         <form>
-    {%csrf_token%}
-
           <div class="inputbox">
-            <input type="text" hint="+254000000000" required="required">
+            <input type="text" required="required">
             <span>phone</span>
           </div>
           <div class="inputbox">
-            <input type="text" required="required">
-            <span>Password</span>
-          </div>
-          <div class="inputbox">
-            <input type="button" value="submit">
-            
+            <input type="button" value="get otp">
+            </a>
           </div>
           <div class="inputbox">
             <a href="{% url 'loginpage' %}">
@@ -41,5 +32,6 @@
 
 
 
+    
 </body>
 </html>
