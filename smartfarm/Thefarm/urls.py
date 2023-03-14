@@ -7,7 +7,7 @@ urlpatterns=[
     path('homepage/',views.homepage,name='hpage'),#this is the home page
     path('fogotpassword/',views.fogotpssd,name='fogotp'),#fogot password
     path('newuser/',views.newuser,name='newuser'),#new user
-    path('lotp/',views.lotp,name='lotp')
+    path('lotp/',views.lotp,name='lotp')#loginviaotp
 
 ]
 

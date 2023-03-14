@@ -3,9 +3,6 @@ import cv2
 import threading
 from django.http import StreamingHttpResponse
 
-
-
-
 #this is the login page view
 
 def loginpage(request):
@@ -15,9 +12,8 @@ def loginpage(request):
 
 #this is the homepage
 def homepage(request):
-    context = {'video_url': '/video_feed/'}
     
-    return render(request,'Thefarm/mainpage.html',context)
+    return render(request,'Thefarm/mainpage.html')
 
 
 
