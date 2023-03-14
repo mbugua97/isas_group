@@ -43,13 +43,9 @@
         <br>
         live
         <div class="videos-container" style=" display: inline-block;" >
-            <video width="750" height="270" controls>
-              <source src="video1.mp4" type="video/mp4">
-            </video>
+             <video src="" autoplay></video>
           
-            <video width="750" height="270" controls>
-              <source src="video2.mp4" type="video/mp4">
-            </video>
+             <video src="" autoplay></video>
           </div>
     </div>
 
@@ -134,24 +130,15 @@ b
 <!-- footer section starts  -->
 
 <section class="footer">
-    <div class="credit">Designed by <span> <a href="htpps://www.mbuguanag.tech">team</a></span> | all rights reserved</div>
+    <div class="credit">Designed by <span> <a href="http://www.mbuguanganag.tech/">team</a></span> | all rights reserved</div>
 </section>
 
 <!-- footer section ends -->
 
 
+
+
+
 <!-- custom js file link  -->
-<script type="text/javascript" src="{% static 'js/script.js' %}">
-navigator.mediaDevices.getUserMedia({ video: true, audio: true })
-  .then(function (stream) {
-    var videoPlayer = document.getElementById('video-player');
-    videoPlayer.srcObject = stream;
-  })
-  .catch(function (error) {
-    console.log('Error accessing media devices.', error);
-  });
-
-
-</script>
 </body>
 </html>
