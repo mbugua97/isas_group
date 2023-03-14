@@ -1,4 +1,9 @@
 from django.shortcuts import render
+import cv2
+import threading
+from django.http import StreamingHttpResponse
+
+
 
 
 #this is the login page view
@@ -10,7 +15,9 @@ def loginpage(request):
 
 #this is the homepage
 def homepage(request):
-    return render(request,'Thefarm/mainpage.html')
+    context = {'video_url': '/video_feed/'}
+    
+    return render(request,'Thefarm/mainpage.html',context)
 
 
 
@@ -30,5 +37,10 @@ def newuser(request):
 
 def lotp(request):
     return render(request,'Thefarm/lotp.html')
+
+
+
+
+
 
 
