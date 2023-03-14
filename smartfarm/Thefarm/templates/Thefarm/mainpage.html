@@ -12,7 +12,7 @@
     <!-- custom css file link  -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}"/>
       
-    <!-- PHP LINK-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
 
 </head>
@@ -57,7 +57,9 @@ b
 
     <div class="row">
         <iframe class="map"  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15959.271825462805!2d36.27520751032714!3d0.024473625556533877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1787608cafe5348d%3A0x14c9300ac0761bb0!2s!5e0!3m2!1sen!2ske!4v1661508452448!5m2!1sen!2ske" allowfullscreen="" loading="lazy" ></iframe>
-        <form action="userinformation.php" method="POST">
+        <form  method="POST">
+            {%csrf_token%}
+
             <h3>get status</h3>
             <div class="inputBox">
                 <span class="fas fa-user"></span>
@@ -82,42 +84,27 @@ b
 
     <h1 class="heading">Take<span>  control</span> </h1>
 
+
     <div class="box-container">
         <div class="box">
             <img src="{% static 'images/fan.jpg' %}" class="user" alt="">
-            <form action="" method="POST">
-                <input type="submit"name="light" value="FUN">
-                </form>
-                <p>the fun is :</p>
-            <p>switch the fun</p>
-            <label class="switch">
-                <input type="checkbox">
-                <span class="slider"></span>
-              </label>
+            <h3>the fan</h3>
+            <button id="switch-fan">SWITCH FUN</button>
         </div>
+
+
+        
         <div class="box">
             <img src="{% static 'images/pump.webp' %}" class="user" alt="">
-            <form action="" method="POST">
-                <input type="submit"name="light" value="PUMP">
-                </form>
-                <p>the pump is :</p>
-            <p>switch the  pump</p>
-            <label class="switch">
-                <input type="checkbox">
-                <span class="slider"></span>
-              </label>
+            <h3>the pump</h3>
+            <button id="switch-pump">SWITCH PUMP</button>
         </div>
+
+
         <div class="box">
             <img src="{% static 'images/bulb.webp' %}" class="user" alt="">
-            <form action="" method="POST">
-            <input type="submit"name="light" value="LIGHTS">
-            </form>
-            <p>the light is :</p>
-            <p>switch  the lights</p>
-            <label class="switch">
-                <input type="checkbox">
-                <span class="slider"></span>
-              </label>
+            <h3>the lights</h3>
+            <button id="switch-bulb">SWITCH LIGHTS</button>
         </div>
         
        
@@ -148,6 +135,62 @@ b
 <!-- footer section ends -->
 
 
+
+
+
+<script>
+    $('#switch-pump').click(function() {
+        $.ajax({
+            url: '/switch-pump/',
+            type: 'POST',
+            data: {},
+            success: function(response) {
+                if (response.success) {
+                    alert('Script executed successfully1!');
+                } else {
+                    alert('switching the pump failed 1');
+                }
+            },
+            error: function() {
+                alert('switching the pump failed');
+            }
+        });
+    });
+    $('#switch-fan').click(function() {
+        $.ajax({
+            url: '/switch-fan/',
+            type: 'POST',
+            data: {},
+            success: function(response) {
+                if (response.success) {
+                    alert('Script executed successfully!');
+                } else {
+                    alert('switching the fan failed 1');
+                }
+            },
+            error: function() {
+                alert('switching the fan failed');
+            }
+        });
+    });
+    $('#switch-bulb').click(function() {
+        $.ajax({
+            url: '/switch-bulb/',
+            type: 'POST',
+            data: {},
+            success: function(response) {
+                if (response.success) {
+                    alert('Script executed successfully1!');
+                } else {
+                    alert('switching the bulb failed! 1');
+                }
+            },
+            error: function() {
+                alert('switching the bulb failed');
+            }
+        });
+    });
+</script>
 
 
 
