@@ -4,6 +4,64 @@ import threading
 from django.http import StreamingHttpResponse
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from .fan import switching_fun
+from .lights import switching_bulb
+from .pump import switching_pump
+
+s_Fun=switching_fun()
+s_bulb=switching_bulb()
+s_pump=switching_pump()
+
+
+
+#switching the fun
+@csrf_exempt
+def Switch_fan(request):
+    switchfan = s_Fun.read_switch()
+    if switchfan == 0:
+        s_Fun.set_led(False)
+    else:
+        s_Fun.set_led(True)
+
+    success = True  # or False, depending on whether the script executed successfully or not
+
+    return JsonResponse({'success': success})
+
+
+
+
+
+#switching the bulb
+@csrf_exempt
+def Switch_bulb(request):
+    switchbulb = s_bulb.read_switch()
+    if switchbulb == 0:
+        s_Fun.set_led(False)
+    else:
+        s_Fun.set_led(True)
+    success = True  # or False, depending on whether the script executed successfully or not
+    return JsonResponse({'success':success})
+
+
+
+
+#switching the pump
+@csrf_exempt
+def Switch_pump(request):
+    switch = s_pump.read_switch()
+    if switch == 0:
+        s_Fun.set_led(False)
+    else:
+        s_Fun.set_led(True)
+     
+    success = True  # or False, depending on whether the script executed successfully or not
+
+    return JsonResponse({'success': success})
+
+
+
+
+
 
 
 #this is the login page view
@@ -14,8 +72,7 @@ def loginpage(request):
 
 
 #this is the homepage
-def homepage(request):
-    
+def homepage(request): 
     return render(request,'Thefarm/mainpage.html')
 
 
@@ -39,26 +96,4 @@ def lotp(request):
 
 
 
-
-#switching the bulb
-@csrf_exempt
-def Switch_bulb(request):
-    success = True  # or False, depending on whether the script executed successfully or not
-
-    return JsonResponse({'success': success})
-
-
-#switching the fun
-@csrf_exempt
-def Switch_fan(request):
-    success = True  # or False, depending on whether the script executed successfully or not
-
-    return JsonResponse({'success': success})
-
-#switching the pump
-@csrf_exempt
-def Switch_pump(request):
-    success = True  # or False, depending on whether the script executed successfully or not
-
-    return JsonResponse({'success': success})
 

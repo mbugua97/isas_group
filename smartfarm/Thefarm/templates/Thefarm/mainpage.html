@@ -96,14 +96,17 @@ b
         
         <div class="box">
             <img src="{% static 'images/pump.webp' %}" class="user" alt="">
-            <h3>the pump</h3>
+            <h3>the pump is 
+
+            </h3>
             <button id="switch-pump">SWITCH PUMP</button>
         </div>
 
 
         <div class="box">
             <img src="{% static 'images/bulb.webp' %}" class="user" alt="">
-            <h3>the lights</h3>
+            <h3>the lights
+            </h3>
             <button id="switch-bulb">SWITCH LIGHTS</button>
         </div>
         
@@ -146,7 +149,7 @@ b
             data: {},
             success: function(response) {
                 if (response.success) {
-                    alert('Script executed successfully1!');
+                    alert('Switched the pump');
                 } else {
                     alert('switching the pump failed 1');
                 }
@@ -163,7 +166,7 @@ b
             data: {},
             success: function(response) {
                 if (response.success) {
-                    alert('Script executed successfully!');
+                    alert('Switched the fun');
                 } else {
                     alert('switching the fan failed 1');
                 }
@@ -177,19 +180,25 @@ b
         $.ajax({
             url: '/switch-bulb/',
             type: 'POST',
-            data: {},
+            data: {
+        
+            },
             success: function(response) {
                 if (response.success) {
-                    alert('Script executed successfully1!');
+                    alert('switched the bulb');
                 } else {
                     alert('switching the bulb failed! 1');
                 }
+              
             },
             error: function() {
                 alert('switching the bulb failed');
             }
         });
     });
+
+    
+
 </script>
 
 
