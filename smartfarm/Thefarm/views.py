@@ -1,61 +1,64 @@
 from django.shortcuts import render
-import cv2
-import threading
 from django.http import StreamingHttpResponse
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+
+
+
 from .fan import switching_fun
 from .lights import switching_bulb
 from .pump import switching_pump
 
 s_Fun=switching_fun()
-s_bulb=switching_bulb()
 s_pump=switching_pump()
+s_bulb=switching_bulb()
 
-
-
-#switching the fun
+#switching the fun  ON
 @csrf_exempt
-def Switch_fan(request):
-    switchfan = s_Fun.read_switch()
-    if switchfan == 0:
-        s_Fun.set_led(False)
-    else:
-        s_Fun.set_led(True)
-
+def Switch_fan_on(request):
+    s_Fun.set_led(True)
     success = True  # or False, depending on whether the script executed successfully or not
-
+    return JsonResponse({'success': success})
+#switching the fun off
+@csrf_exempt
+def Switch_fan_off(request):
+    s_Fun.set_led(False)
+    success = True  # or False, depending on whether the script executed successfully or not
     return JsonResponse({'success': success})
 
 
 
 
 
-#switching the bulb
+
+#switching the bulb on
 @csrf_exempt
-def Switch_bulb(request):
-    switchbulb = s_bulb.read_switch()
-    if switchbulb == 0:
-        s_Fun.set_led(False)
-    else:
-        s_Fun.set_led(True)
+def Switch_bulb_on(request):
+    s_bulb.set_led(True)
+    success = True  # or False, depending on whether the script executed successfully or not
+    return JsonResponse({'success':success})
+#switching the bulb off
+@csrf_exempt
+def Switch_bulb_off(request):
+    s_bulb.set_led(False)
     success = True  # or False, depending on whether the script executed successfully or not
     return JsonResponse({'success':success})
 
 
 
 
-#switching the pump
+#switching the pump on
 @csrf_exempt
-def Switch_pump(request):
-    switch = s_pump.read_switch()
-    if switch == 0:
-        s_Fun.set_led(False)
-    else:
-        s_Fun.set_led(True)
-     
+def Switch_pump_on(request):
+    s_pump.set_led(True) 
     success = True  # or False, depending on whether the script executed successfully or not
+    return JsonResponse({'success': success})
 
+#switching the pump off
+@csrf_exempt
+def Switch_pump_off(request):
+    s_pump.set_led(False) 
+    success = True  # or False, depending on whether the script executed successfully or not
     return JsonResponse({'success': success})
 
 

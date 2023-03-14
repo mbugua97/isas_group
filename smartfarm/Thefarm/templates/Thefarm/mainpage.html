@@ -89,17 +89,19 @@ b
         <div class="box">
             <img src="{% static 'images/fan.jpg' %}" class="user" alt="">
             <h3>the fan</h3>
-            <button id="switch-fan">SWITCH FUN</button>
+            <button id="switch-fan-on">SWITCH FAN ON</button>
+            <button id="switch-fan-off">SWITCH FAN OF</button>
         </div>
 
 
         
         <div class="box">
             <img src="{% static 'images/pump.webp' %}" class="user" alt="">
-            <h3>the pump is 
+            <h3>the pump  
 
             </h3>
-            <button id="switch-pump">SWITCH PUMP</button>
+            <button id="switch-pump-on">SWITCH PUMP ON</button>
+            <button id="switch-pump-off">SWITCH PUMP OFF</button>
         </div>
 
 
@@ -107,7 +109,8 @@ b
             <img src="{% static 'images/bulb.webp' %}" class="user" alt="">
             <h3>the lights
             </h3>
-            <button id="switch-bulb">SWITCH LIGHTS</button>
+            <button id="switch-bulb-on">SWITCH LIGHTS ON</button>
+            <button id="switch-bulb-off">SWITCH LIGHTS OFF</button>
         </div>
         
        
@@ -142,14 +145,14 @@ b
 
 
 <script>
-    $('#switch-pump').click(function() {
+    $('#switch-pump-on').click(function() {
         $.ajax({
-            url: '/switch-pump/',
+            url: '/switch-pump-on/',
             type: 'POST',
             data: {},
             success: function(response) {
                 if (response.success) {
-                    alert('Switched the pump');
+                    alert('Switched the pump on ');
                 } else {
                     alert('switching the pump failed 1');
                 }
@@ -159,14 +162,31 @@ b
             }
         });
     });
-    $('#switch-fan').click(function() {
+    $('#switch-pump-off').click(function() {
         $.ajax({
-            url: '/switch-fan/',
+            url: '/switch-pump-off/',
             type: 'POST',
             data: {},
             success: function(response) {
                 if (response.success) {
-                    alert('Switched the fun');
+                    alert('Switched the pump off ');
+                } else {
+                    alert('switching the pump failed 1');
+                }
+            },
+            error: function() {
+                alert('switching the pump failed');
+            }
+        });
+    });
+    $('#switch-fan-on').click(function() {
+        $.ajax({
+            url: '/switch-fan-on/',
+            type: 'POST',
+            data: {},
+            success: function(response) {
+                if (response.success) {
+                    alert('Switched the fun on');
                 } else {
                     alert('switching the fan failed 1');
                 }
@@ -176,16 +196,55 @@ b
             }
         });
     });
-    $('#switch-bulb').click(function() {
+
+    $('#switch-fan-off').click(function() {
         $.ajax({
-            url: '/switch-bulb/',
+            url: '/switch-fan-off/',
+            type: 'POST',
+            data: {},
+            success: function(response) {
+                if (response.success) {
+                    alert('Switched the fun off ');
+                } else {
+                    alert('switching the fan failed 1');
+                }
+            },
+            error: function() {
+                alert('switching the fan failed');
+            }
+        });
+    });
+   
+    $('#switch-bulb-on').click(function() {
+        $.ajax({
+            url: '/switch-bulb-on/',
             type: 'POST',
             data: {
         
             },
             success: function(response) {
                 if (response.success) {
-                    alert('switched the bulb');
+                    alert('switched the bulb on');
+                } else {
+                    alert('switching the bulb failed! 1');
+                }
+              
+            },
+            error: function() {
+                alert('switching the bulb failed');
+            }
+        });
+    });
+    $('#switch-bulb-off').click(function() {
+        $.ajax({
+            url: '/switch-bulb-off/',
+            type: 'POST',
+            data: {
+        
+            },
+            success: function(response) {
+                if (response.success) {
+                    alert('switched the bulb off');
                 } else {
                     alert('switching the bulb failed! 1');
                 }
