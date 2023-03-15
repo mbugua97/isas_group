@@ -136,7 +136,9 @@ def fogotpssd(request):
         password=request.POST.get('passd')
         for i in User:
             if str(i.phone_number)==str(phone):
-                person = UserDetails(phone_number=phone, user_password=password)
+                person = UserDetails.objects.get(phone_number=phone)
+                person.phone_number=phone
+                person.user_password=password
                 person.save()
                 return redirect('loginpage')  
 
