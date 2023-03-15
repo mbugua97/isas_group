@@ -11,15 +11,14 @@
 </head>
 <body>
     <div class="center">
-        <h1> login via otp</h1>
+        <h1> enter otp</h1>
         <form>
-          {%csrf_token%}
           <div class="inputbox">
-            <input type="text" name="phone" required="required">
-            <span>phone</span>
+            <input type="text" required="required">
+            <span>otp</span>
           </div>
           <div class="inputbox">
-            <input style="background-color: chartreuse;"type="submit" value=" get otp">
+            <input type="button" value="login">
             </a>
           </div>
           <div class="inputbox">

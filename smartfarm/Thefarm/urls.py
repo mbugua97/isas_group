@@ -8,15 +8,15 @@ urlpatterns=[
     path('fogotpassword/',views.fogotpssd,name='fogotp'),#fogot password
     path('newuser/',views.newuser,name='newuser'),#new user
     path('lotp/',views.lotp,name='lotp'),#loginviaotp
+    path('gotp/',views.lotp,name='gotp'),#getotp
 
+   #path('switch-bulb-on/', views.Switch_bulb_on, name='sbulbon'),
+    # path('switch-bulb-off/', views.Switch_bulb_off, name='sbulboff'),
 
-    path('switch-bulb-on/', views.Switch_bulb_on, name='sbulbon'),
-     path('switch-bulb-off/', views.Switch_bulb_off, name='sbulboff'),
+   # path('switch-fan-off/', views.Switch_fan_off, name='sfanoff'),
+   # path('switch-fan-on/', views.Switch_fan_on, name='sfanonn'),
 
-    path('switch-fan-off/', views.Switch_fan_off, name='sfanoff'),
-    path('switch-fan-on/', views.Switch_fan_on, name='sfanonn'),
-
-    path('switch-pump-on/', views.Switch_pump_on, name='spumpon'),
-    path('switch-pump-off/',views.Switch_pump_off,name='spumpoff')
+    #path('switch-pump-on/', views.Switch_pump_on, name='spumpon'),
+    #path('switch-pump-off/',views.Switch_pump_off,name='spumpoff')
 ]
 
