@@ -12,8 +12,19 @@
 <body>
     <div class="center">
         <h1> login via otp</h1>
-        <form>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+        <form method="POST">
           {%csrf_token%}
+          <div class="inputbox">
+            <input type="text" name="name" required="required">
+            <span>name</span>
+          </div>
           <div class="inputbox">
             <input type="text" name="phone" required="required">
             <span>phone</span>

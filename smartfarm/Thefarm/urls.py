@@ -8,7 +8,7 @@ urlpatterns=[
     path('fogotpassword/',views.fogotpssd,name='fogotp'),#fogot password
     path('newuser/',views.newuser,name='newuser'),#new user
     path('lotp/',views.lotp,name='lotp'),#loginviaotp
-    path('gotp/',views.lotp,name='gotp'),#getotp
+    path('gotp/',views.gotp,name='gotp'),#getotp
 
    #path('switch-bulb-on/', views.Switch_bulb_on, name='sbulbon'),
     # path('switch-bulb-off/', views.Switch_bulb_off, name='sbulboff'),

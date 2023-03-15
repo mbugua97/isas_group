@@ -12,20 +12,47 @@
 <body>
     <div class="center">
         <h1> login</h1>
-        <form>
+        <form method="POST">
+
+
+
+
+          {% if messages %}
+          <ul class="messages">
+              {% for message in messages %}
+                  <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+              {% endfor %}
+          </ul>
+      {% endif %}
+      
+      
+      
+
+
+          {%csrf_token%}
           <div class="inputbox">
-            <input type="text" required="required">
-            <span>Email</span>
+            <input type="text" name="phone" required="required">
+            <span>phone</span>
           </div>
           <div class="inputbox">
-            <input type="text" required="required">
+            <input type="password" name="passd" required="required">
             <span>Password</span>
           </div>
+          <!--
+          this is the login link submit button
+          !-->
           <div class="inputbox">
             <a href="{% url 'hpage' %}">
-            <input type="button" value="login">
+            <input style=" width: 50%;
+            background: dodgerblue;
+            color: #fff;
+            border: #fff;"       
+            type="submit"  value="login">
             </a>
           </div>
+
+
+
           <div class="inputbox">
             <a href="{% url 'lotp' %}">
             <input type="button" value="otp login">

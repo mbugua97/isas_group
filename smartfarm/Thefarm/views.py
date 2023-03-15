@@ -4,12 +4,22 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import random
 from twilio.rest import Client
+from django.contrib import messages
 
 
-#twilio
+#importing the db
+from . models import HumidityTemp,UserDetails
+
+
+
+
+
+
+#twilio bob's account
 otp=random.randint(1111,9999)
-auth_token="900062764324071aa543c688b0d2ea4c"
-auth_id="AC9ae150dd36651e026e92d90da90a935f"
+auth_token="9a986e0e64418f974d41ecafd7dc47a1"
+auth_id="ACca19a7e3a5e1b132377b6898d3bb60cf"
+
 
 client=Client(auth_id,auth_token)
 
@@ -86,6 +96,28 @@ client=Client(auth_id,auth_token)
 #this is the login page view
 
 def loginpage(request):
+    User=UserDetails.objects.all()
+    if request.method=='POST':
+        phone=request.POST.get('phone')
+        password=request.POST.get('passd')
+        for i in User:
+            print(i.phone_number)
+            if str(i.phone_number)==str(phone):
+                if str(i.user_password)==str(password):
+                    messages.success(request, f'hello {phone} you are logged in')
+                    return redirect('hpage')
+                else:
+                    messages.error(request, 'check your phone number or password ')
+                    return redirect('loginpage')
+                    
+                    
+        messages.error(request, 'check your phone number or password ')
+        
+
+               
+
+
+
     return render(request,'Thefarm/login.html')
 
 
@@ -98,6 +130,18 @@ def homepage(request):
 
 #this is the fogot password page
 def fogotpssd(request):
+    User=UserDetails.objects.all()
+    if request.method=='POST':
+        phone=request.POST.get('phone')
+        password=request.POST.get('passd')
+        for i in User:
+            if str(i.phone_number)==str(phone):
+                person = UserDetails(phone_number=phone, user_password=password)
+                person.save()
+                return redirect('loginpage')  
+
+        messages.error(request, 'to reset password enter valid phone registered with')       
+
     return render(request,'Thefarm/fpassd.html')
 
 
@@ -106,6 +150,18 @@ def fogotpssd(request):
 
 #this is the new user page
 def newuser(request):
+    User=UserDetails()
+    if request.method=='POST':
+        phone=request.POST.get('phone')
+        password=request.POST.get('passd')
+        conphone=UserDetails.objects.all()
+        for i in conphone:
+            if i.phone_number==phone:
+                messages.error(request, 'Phone is taken try a new number')
+                return redirect('newuser')
+        person = UserDetails(phone_number=phone, user_password=password)
+        person.save()
+        return redirect('loginpage')     
     return render(request,'Thefarm/newuser.html')
 
 
@@ -113,12 +169,34 @@ def newuser(request):
 def lotp(request):
     if request.method=='POST':
         phone=request.POST.get("phone")
-        print(phone)
+        name=request.POST.get("name")
+
+        conphone=UserDetails.objects.all()
+        for i in conphone:
+            if i.phone_number==phone:
+               print("match found")
+               msg=client.messages.create(
+                    body=f"  I.S.A.S:  hello {name} your otp is {otp}",
+                    from_="+15075640261",
+                    to=phone
+                    )
+               return redirect('gotp')
+        messages.error(request, 'try a number registered with ISAS')
+        return redirect('lotp')
+
     return render(request,'Thefarm/lotp.html')
 
 
 
 
 def gotp(request):
+     if request.method=='POST':
+        otpno=request.POST.get("otp")
+        atb=int(otp) == int(otpno)
+        if atb==True:
+             return redirect('hpage')
+        else:
+            return redirect('lotp')
+
     
-    return render(request,'Thefarm/gotp.html')
+     return render(request,'Thefarm/gotp.html')

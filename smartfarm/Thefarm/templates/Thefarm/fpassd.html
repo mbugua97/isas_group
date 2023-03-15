@@ -12,17 +12,41 @@
 <body>
     <div class="center">
         <h1> fogot password</h1>
-        <form>
+
+
+
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+
+
+
+
+
+
+        <form method="POST">
+          {%csrf_token%}
           <div class="inputbox">
-            <input type="text" required="required">
-            <span>Email</span>
+            <input type="text" name="phone" required="required">
+            <span>phone</span>
           </div>
           <div class="inputbox">
-            <input type="text" required="required">
+            <input type="text" name="passd"required="required">
             <span>Password</span>
           </div>
+
           <div class="inputbox">
-            <input type="button" value="submit">
+            <input style=" width: 50%;
+            background: dodgerblue;
+            color: #fff;
+            border: #fff;"       
+            type="submit"  value="reset">
+            </a>
           </div>
 
           <div class="inputbox">
