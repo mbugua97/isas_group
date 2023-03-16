@@ -217,7 +217,8 @@ def mlprediction(request):
     if request.method=='POST':
         Hum=request.POST.get('humidity')
         temp=request.POST.get('temprature')
-    new_data = [[Hum, temp]]
-    prediction = model.predict(new_data)
-    context={'prediction':prediction}
-    return render(request,'Thefarm/prediction.html',context)
+        new_data = [[temp,Hum]]
+        prediction = model.predict(new_data)
+        context={'prediction':prediction}
+        return render(request,'Thefarm/prediction.html',context)
+    return render(request,'Thefarm/prediction.html')
