@@ -1,0 +1,10 @@
+<form style="text-align: center;" method="post">
+{%csrf_token%}
+<h3>humidity</h3>:<input type="number" name="humidity">
+<h3>Temprature</h3>:<input type="number" name="temprature">
+
+<input type="submit"value="predict">
+</form>
+
+
+<h2> isas recomends you planting:{{prediction}}</h2>

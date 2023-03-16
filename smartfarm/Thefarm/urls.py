@@ -9,6 +9,7 @@ urlpatterns=[
     path('newuser/',views.newuser,name='newuser'),#new user
     path('lotp/',views.lotp,name='lotp'),#loginviaotp
     path('gotp/',views.gotp,name='gotp'),#getotp
+    path('prediction/',views.mlprediction,name='mlprediction')#ml prediction
 
    #path('switch-bulb-on/', views.Switch_bulb_on, name='sbulbon'),
     # path('switch-bulb-off/', views.Switch_bulb_off, name='sbulboff'),

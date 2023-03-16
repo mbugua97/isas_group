@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 import random
 from twilio.rest import Client
 from django.contrib import messages
-
+import pickle
 
 #importing the db
 from . models import HumidityTemp,UserDetails
@@ -208,6 +208,16 @@ def gotp(request):
              return redirect('hpage')
         else:
             return redirect('lotp')
-
-    
      return render(request,'Thefarm/gotp.html')
+
+#this page is for to test the model
+def mlprediction(request):
+    with open("Thefarm/crop_model.pkl", 'rb') as f:
+        model = pickle.load(f)
+    if request.method=='POST':
+        Hum=request.POST.get('humidity')
+        temp=request.POST.get('temprature')
+    new_data = [[Hum, temp]]
+    prediction = model.predict(new_data)
+    context={'prediction':prediction}
+    return render(request,'Thefarm/prediction.html',context)
