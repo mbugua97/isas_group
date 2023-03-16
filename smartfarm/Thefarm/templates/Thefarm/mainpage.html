@@ -39,19 +39,40 @@
     <div class="content">
         
         <h3>I.S.A.S</h3>
-        <a href="" class="btn">Farm report</a>
+        <a href="" download="report.pdf" class="btn">Farm report</a>
         <br>
-        <br>
-        live
-        <div class="videos-container" style=" display: inline-block;" >
-             <video src="" autoplay></video>
-          
-             <video src="" autoplay></video>
-          </div>
+        
+       <table>
+  <tr>
+    <td>
+      <video width="370" height="240"  autoplay loop muted controls  >
+        <source src="{% static 'video/cam1.mp4' %}" type="video/mp4">
+      </video>
+    </td>
+    <td>
+      <video width="370" height="240" autoplay loop muted >
+        <source src="{% static 'video/cam1.mp4' %}" type="video/mp4">
+      </video>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <video width="370" height="240" autoplay loop muted>
+        <source src="{% static 'video/cam1.mp4' %}" type="video/mp4">
+      </video>
+    </td>
+    <td>
+      <video width="370" height="240"  autoplay loop  muted>
+        <source src="{% static 'video/cam1.mp4' %}" type="video/mp4">
+      </video>
+    </td>
+  </tr>
+</table>
+
     </div>
+    
 
 </section>
-b
 <section class="contact" id="contact">
 
     <h1 class="heading"> <span>Farm</span>status</h1>

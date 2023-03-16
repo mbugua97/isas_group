@@ -17,7 +17,7 @@ from . models import HumidityTemp,UserDetails
 
 #twilio bob's account
 otp=random.randint(1111,9999)
-auth_token="9a986e0e64418f974d41ecafd7dc47a1"
+auth_token="390310ac28e9f5d06492a11526e0e42b"
 auth_id="ACca19a7e3a5e1b132377b6898d3bb60cf"
 
 
@@ -124,6 +124,15 @@ def loginpage(request):
 
 #this is the homepage
 def homepage(request): 
+    from reportlab.pdfgen import canvas
+    # Create a new PDF object
+    pdf = canvas.Canvas('report.pdf')
+
+    # Add some text to the PDF
+    pdf.drawString(100, 750, "Welcome to my isas")
+
+    # Save the PDF
+    pdf.save()
     return render(request,'Thefarm/mainpage.html')
 
 
