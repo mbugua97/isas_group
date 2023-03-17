@@ -6,6 +6,11 @@ import random
 from twilio.rest import Client
 from django.contrib import messages
 import pickle
+import Adafruit_DHT  #for the temp and humidity
+import RPi.GPIO as GPIO
+
+
+
 
 #importing the db
 from . models import HumidityTemp,UserDetails
@@ -31,26 +36,26 @@ client=Client(auth_id,auth_token)
 
 
 
-#from .fan import switching_fun
-#from .lights import switching_bulb
-#from .pump import switching_pump
+from .fan import switching_fun
+from .lights import switching_bulb
+from .pump import switching_pump
 
-#s_Fun=switching_fun()
-#s_pump=switching_pump()
-#s_bulb=switching_bulb()
+s_Fun=switching_fun()
+s_pump=switching_pump()
+s_bulb=switching_bulb()
 
 #switching the fun  ON
-#@csrf_exempt
-#def Switch_fan_on(request):
- #   s_Fun.set_led(True)
-  #  success = True  # or False, depending on whether the script executed successfully or not
-   # return JsonResponse({'success': success})
+@csrf_exempt
+def Switch_fan_on(request):
+    s_Fun.set_led(True)
+    success = True  # or False, depending on whether the script executed successfully or not
+    return JsonResponse({'success': success})
 #switching the fun off
-#@csrf_exempt
-#def Switch_fan_off(request):
- #   s_Fun.set_led(False)
-  #  success = True  # or False, depending on whether the script executed successfully or not
-   # return JsonResponse({'success': success})
+@csrf_exempt
+def Switch_fan_off(request):
+    s_Fun.set_led(False)
+    success = True  # or False, depending on whether the script executed successfully or not
+    return JsonResponse({'success': success})
 
 
 
@@ -58,34 +63,34 @@ client=Client(auth_id,auth_token)
 
 
 #switching the bulb on
-#@csrf_exempt
-#def Switch_bulb_on(request):
- #   s_bulb.set_led(True)
-  #  success = True  # or False, depending on whether the script executed successfully or not
-   # return JsonResponse({'success':success})
+@csrf_exempt
+def Switch_bulb_on(request):
+    s_bulb.set_led(True)
+    success = True  # or False, depending on whether the script executed successfully or not
+    return JsonResponse({'success':success})
 #switching the bulb off
-#@csrf_exempt
-#def Switch_bulb_off(request):
- #   s_bulb.set_led(False)
-  #  success = True  # or False, depending on whether the script executed successfully or not
-   # return JsonResponse({'success':success})
+@csrf_exempt
+def Switch_bulb_off(request):
+    s_bulb.set_led(False)
+    success = True  # or False, depending on whether the script executed successfully or not
+    return JsonResponse({'success':success})
 
 
 
 
 #switching the pump on
-#@csrf_exempt
-#def Switch_pump_on(request):
- #   s_pump.set_led(True) 
-  #  success = True  # or False, depending on whether the script executed successfully or not
-   # return JsonResponse({'success': success})
+@csrf_exempt
+def Switch_pump_on(request):
+    s_pump.set_led(True) 
+    success = True  # or False, depending on whether the script executed successfully or not
+    return JsonResponse({'success': success})
 
 #switching the pump off
-#@csrf_exempt
-#def Switch_pump_off(request):
- #   s_pump.set_led(False) 
-  #  success = True  # or False, depending on whether the script executed successfully or not
-   # return JsonResponse({'success': success})
+@csrf_exempt
+def Switch_pump_off(request):
+    s_pump.set_led(False) 
+    success = True  # or False, depending on whether the script executed successfully or not
+    return JsonResponse({'success': success})
 
 
 
@@ -222,3 +227,17 @@ def mlprediction(request):
         context={'prediction':prediction}
         return render(request,'Thefarm/prediction.html',context)
     return render(request,'Thefarm/prediction.html')
+
+
+def HumidityTemp(request):
+    humidity, temperature = Adafruit_DHT.read_retry(11, 4)
+    data = {'humidity': humidity, 'temperature':temperature}
+    return JsonResponse(data)
+
+@csrf_exempt
+def Soilmoist(request):
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(26, GPIO.IN)
+    value = GPIO.input(26)
+    data = {'value': value}
+    return JsonResponse(data)

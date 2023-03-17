@@ -41,7 +41,11 @@
         <h3>I.S.A.S</h3>
         <a href="" download="report.pdf" class="btn">Farm report</a>
         <br>
-        <a href="{%url 'mlprediction'%}"  class="btn">Farm report</a>
+        <a href="{%url 'mlprediction'%}"  class="btn">TEST THE MODEL</a>
+<div class ="livedata" >
+
+</div>
+
        <table>
   <tr>
     <td>
@@ -50,22 +54,32 @@
       </video>
     </td>
     <td>
-      <video width="370" height="240" autoplay loop muted >
+      <video  width="370" height="240"  autoplay loop muted >
         <source src="{% static 'video/cam1.mp4' %}" type="video/mp4">
       </video>
     </td>
+    <td>
+        <video width="370" height="240" autoplay loop muted >
+          <source src="{% static 'video/cam1.mp4' %}" type="video/mp4">
+        </video>
+      </td>
   </tr>
   <tr>
     <td>
-      <video width="370" height="240" autoplay loop muted>
+        <video  width="370" height="240"  autoplay loop muted >
         <source src="{% static 'video/cam1.mp4' %}" type="video/mp4">
       </video>
     </td>
     <td>
-      <video width="370" height="240"  autoplay loop  muted>
+        <video  width="370" height="240"  autoplay loop muted >
         <source src="{% static 'video/cam1.mp4' %}" type="video/mp4">
       </video>
     </td>
+    <td>
+        <video  width="370" height="240"  autoplay loop muted >
+          <source src="{% static 'video/cam1.mp4' %}" type="video/mp4">
+        </video>
+      </td>
   </tr>
 </table>
 
@@ -73,6 +87,57 @@
     
 
 </section>
+
+
+<section class="review" id="review">
+
+    <h1 class="heading">live<span>  data</span> </h1>
+
+
+    <div class="box-container">
+        <div class="box">
+            <img src="{% static 'images/temprature.png' %}" class="user" alt="">
+            <h3>temprature</h3>
+            <h3 id="temperature"></h3>
+        </div>
+
+
+        
+        <div class="box">
+            <img src="{% static 'images/humidity.jpg' %}" class="user" alt="">
+            <h3>humidity</h3>
+            <h3 id="humidity"></h3>
+        </div>
+
+        <div class="box">
+            <img src="{% static 'images/soilm.jpg' %}" class="user" alt="">
+            <h3>soil moisture</h3>
+            <h3 id="soilmoist"></h3>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="review" id="review">
+
+    <h1 class="heading">LIVE<span> RECOMENDATION</span> </h1>
+
+
+    <div class="box-container">
+        <div class="box">
+            <h3>width the above temprature and humidity ISAS RECOMENDS YOU TO PLANT</h3></h3>
+        </div>
+
+</section>
+
+
+
+
+
+
+
 <section class="contact" id="contact">
 
     <h1 class="heading"> <span>Farm</span>status</h1>
@@ -278,6 +343,25 @@
             }
         });
     });
+
+    setInterval(function() {
+    $.ajax({
+        url: "{% url 'humtemp' %}",
+        success: function(data) {
+            $('#humidity').html(data.humidity);
+            $('#temperature').html(data.temperature);
+        }
+    });
+}, 500);
+
+setInterval(function() {
+    $.ajax({
+        url: "{% url 'smoist' %}",
+        success: function(data) {
+            $('#soilmoist').html(data.value);
+        }
+    });
+}, 1000);
 
     
 

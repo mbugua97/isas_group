@@ -639,6 +639,13 @@ section{
     .home .content p{
         font-size: 1.5rem;
     }
+    .home .livedata h4{
+        font-size: 1.5rem;
+    }
+
+    .home .livedata p{
+        font-size: 1.5rem;
+    }
 
 }
 
